@@ -4,7 +4,6 @@ import { StyleSheet, Text, View , Button, onPress, TextInput} from 'react-native
 import { useState } from 'react';
 import {db} from './Home';
 
-
 export default function firebaseSignIn({navigation}) {
 
 
