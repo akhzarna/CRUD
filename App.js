@@ -12,6 +12,9 @@ import SettingsScreen from './SettingsScreen';
 import HomeForClass from './HomeForClass';
 import HomeForFunctional from './HomeForFunctional';
 import SettingForClass from './SettingForClass';
+import UsersList from './UsersList'
+import CreateUserScreen from "./CreateUserScreen";
+import UserDetailScreen from "./UserDetailScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +23,22 @@ export default function App(props) {
     <NavigationContainer>
       <Stack.Navigator>
         
+      <Stack.Screen
+        name="UsersList"
+        component={UsersList}
+        options={{ title: "Users List" }}
+      />
+      <Stack.Screen
+        name="CreateUserScreen"
+        component={CreateUserScreen}
+        options={{ title: "Create a New User" }}
+      />
+      <Stack.Screen
+        name="UserDetailScreen"
+        component={UserDetailScreen}
+        options={{ title: "User Detail" }}
+      />
+
         <Stack.Screen name="Home" component={Home} options={{ title: 'Welcome' }} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
