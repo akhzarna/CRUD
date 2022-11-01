@@ -1,6 +1,6 @@
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Button , FlatList} from 'react-native';
 // import ProfileScreen from './ProfileScreen';
 import Top from './Top';
 import Center from './Center';
@@ -40,13 +40,23 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDhlmHLvYayhhMna9rLh3pM4f8f--jfeA4",
-  authDomain: "bseb-f0d27.firebaseapp.com",
-  projectId: "bseb-f0d27",
-  storageBucket: "bseb-f0d27.appspot.com",
-  messagingSenderId: "142210169144",
-  appId: "1:142210169144:web:d11233da3e21fbe6c729cd"
+
+  apiKey: "AIzaSyBaKwlkrHbUuGXsF_q1Lb4Al_tdxskYc9c",
+
+  authDomain: "testt-dd1f2.firebaseapp.com",
+
+  databaseURL: "https://testt-dd1f2-default-rtdb.firebaseio.com",
+
+  projectId: "testt-dd1f2",
+
+  storageBucket: "testt-dd1f2.appspot.com",
+
+  messagingSenderId: "182382313651",
+
+  appId: "1:182382313651:web:4a6eedf4b857147f29f0c6"
+
 };
+
 
 let app;
 
@@ -107,7 +117,7 @@ export default function Home({navigation}) {
     })
   }
 
-  useEffect(()=>{
+  
 
     global.setting={
       fs:50,
@@ -154,20 +164,46 @@ export default function Home({navigation}) {
   //   console.log('User updated!');
   // });
 
-
-  db.collection('student')
-  .doc('umer')
-  .add({
-    campus: 'Pak Aims',
-    rollno: 1,
-    name:'Salman',
-    class:'BSE B',
-    key:10
-  })
+const Deleted = () => {
+   
+  db.collection('Users')
+  .doc('ABC')
+  .delete()
   .then(() => {
-    console.log('User added!');
-  });
+    console.log('User deleted!');
+  })
+  }
+  
+  const abc = async () => {
+  
+  db.collection("student")
+   .orderBy('rollno', 'asc')
+   .get()
+      .then((querySnapshot) => {
+        let myData = [];
+       // console.log("Total users: ", querySnapshot.size);
+        querySnapshot.forEach((documentSnapshot) => {
+          const playerObject = documentSnapshot.data();
+          myData.push({
+            name: playerObject.name,
+            rollno: playerObject.rollno,
+          });
 
+      //    console.log(
+          //  "User ID=: ",
+         //   documentSnapshot.id,
+        //    documentSnapshot.data()
+       //   );
+          
+          });
+          setData(myData);
+        });
+
+      }
+      
+     
+    abc();
+      
 
   // firestore()
   // .collection('Users')
@@ -194,35 +230,67 @@ export default function Home({navigation}) {
 
   // return () => subscriber();
   
-  console.log('useEffect')
 
-  // limitToLast
-  // limitToFirst
-  // .ref('/universities').limitToFirst(2)
-  // .ref('/universities').limitToLast(2)
-  // .ref('/universities').orderByChild("name").equalTo("COMSATS")
+ 
 
-  // dbreal
-  // .ref('/universities').orderByChild("name").equalTo("COMSATS")
-  // .on('value', snapshot => {
-  //   console.log('Real Time User data: ', snapshot.val());
-  //   setData(snapshot.val())
-  // });
-
-  }, [])
-
-  const [fonts, setFonts] = useState(16)
+ 
 
   useEffect(() => {
     // console.log('navigation useEffect is =')
     const unsubscribe = navigation.addListener('focus', () => {
-      setFonts(global.setting.fs)
+   //   setFonts(global.setting.fs)
       
       console.log('navigation useEffect is Called=', global.setting)
 
     });
     return unsubscribe;
   }, [navigation]);
+
+
+  const [names, onChangeText] = React.useState(null);
+  const [roll, onChangeNumber] = React.useState(null);
+
+  const [nnames, onChangeText1] = React.useState(null);
+  const [nroll, onChangeNumber2] = React.useState(null);
+
+  const xyz = () => {
+
+  if(nnames!=names && nnames !== null )
+
+  {
+
+    db.collection('student')
+    .doc(names)
+    .delete()
+
+  {
+    db.collection('student')
+   
+    .doc(nnames)
+   .set({
+    name: nnames,
+    rollno: nroll,
+   })
+   .then(() => {
+     console.log('User updated!');
+   }) 
+  }
+  }
+
+  else
+
+  {
+  db.collection('student')
+  .doc(names)
+ .update({
+  rollno: nroll,
+ })
+ .then(() => {
+   console.log('User updated!');
+ }) 
+}
+  
+}
 
   return (
     <View style={{flex:1, backgroundColor:'white'}}>
@@ -231,14 +299,6 @@ export default function Home({navigation}) {
         // console.log('User data: ', data)
       }
 
-      <Text style={{fontSize:fonts}}> We are testing </Text>
-
-      {/* <Button
-          title="Go to Next Screen"
-          onPress={() =>
-          navigation.navigate('ProfileScreen',{id:'hef34231'})
-        }
-        /> */}
       
       {/* <Button
           title="Go to Setting Screen"
@@ -247,48 +307,131 @@ export default function Home({navigation}) {
         }
         /> */}
 
-        {/* <Button
-          title="Go to Chatting Screen"
-          onPress={() =>
-          navigation.navigate('Chatting',{id:'bcs1920cs'})
+      
+
+<View style={{ flex: 1, backgroundColor: "green" }}>
+        
+        <View>
+
+        <TextInput
+        style={{backgroundColor:'white',  margin:12}}
+        onChangeText={onChangeText}
+        placeholder="Enter Student Name"
+        placeholderTextColor={"grey"}
+        value={names}
+      />
+     
+     <TextInput
+        style={{backgroundColor:'white',  margin:12}}
+        onChangeText={onChangeNumber}
+        value={roll}
+        placeholder="Enter Roll Number"
+        placeholderTextColor={"grey"}
+        keyboardType="numeric"
+      />
+      
+
+<Button 
+          title="Create Record"
+          onPress={ async () =>
+            db.collection('student')
+            .doc(names)
+            .set({
+              rollno: roll ,
+             name: names ,
+            })
+            .then(() => {
+              console.log('User added!');
+            })   
         }
-        /> */}
-
-      <Button
-          title="Go to Next Functional Component"
-          onPress={() =>
-            navigation.navigate('HomeForFunctional')
-          }
         />
 
-      <Button
-          title="Go to Next Class Component"
-          onPress={() =>
-            navigation.navigate('HomeForClass')
-          }
+<TextInput  
+        style={{backgroundColor:'white',  margin:12}}
+        onChangeText={onChangeText}
+        placeholder="Delete Record By Student Name"
+        placeholderTextColor={"grey"}
+        value={names}
+      />
+
+<Button
+          title="Delete"
+          color="red"
+          width = '80'
+
+          
+          onPress={ async () =>
+            db.collection('student')
+            .doc(names)
+            .delete()
+            .then(() => {
+              console.log('User deleted!');
+            })
+        }
         />
 
-      <Button
-          title="Create USer"
-          onPress={createUser}
-        />
-     
-     <Button
-          title="Firebase Sign In"
-          onPress={loginUser}
-        />
-     
-     <Button
-          title="Guest User"
-          onPress={guestUser}
+<TextInput  
+        style={{backgroundColor:'white',  margin:6}}
+        onChangeText={onChangeText}
+        placeholder="Which Student? Enter Name"
+        placeholderTextColor={"grey"}
+        value={names}
+      />
+
+<TextInput  
+        style={{backgroundColor:'white',  margin:6}}
+        onChangeText={onChangeText1}
+        placeholder="Enter Updated Name Or Leave Empty If None"
+        value={nnames}
+        placeholderTextColor={"grey"}
+      />
+
+<TextInput  
+        style={{backgroundColor:'white',  margin:6}}
+        onChangeText={onChangeNumber2}
+        placeholder="Enter Updated Roll Number"
+        placeholderTextColor={"grey"}
+        keyboardType="numeric"
+        value={nroll}
+      />
+
+
+
+<Button
+          title="Update"
+          color="grey"
+          margin= '4'
+          onPress={xyz}
+  
         />
 
-    <Button
-          title="Log Out User"
-          onPress={logoutUser}
-        />
 
+<Text style={{backgroundColor:'yellow', padding:6, margin:2, justifyContent:'center', alignSelf:'center'}}>Student List:</Text>
+
+        </View>
+        
+        <FlatList
+          data={data}
+          renderItem=  {({ item })   => (
+            <View>
+              <Text style={{ backgroundColor: "pink" }}>
+                Name:  {item.name}    
+              </Text>
+
+              
+              <Text style={{ backgroundColor: "orange", marginBottom:5 }}>
+                Rollno:  {item.rollno}    
+
+              </Text>
+              
+       
+              
+            </View>
+          )}
+        />
+      </View>  
     </View>
+
   );
 }
 
