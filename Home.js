@@ -288,6 +288,8 @@ export default function Home({navigation}) {
           onPress={logoutUser}
         />
 
+
+
     </View>
   );
 }
