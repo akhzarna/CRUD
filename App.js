@@ -12,6 +12,7 @@ import SettingsScreen from './SettingsScreen';
 import HomeForClass from './HomeForClass';
 import HomeForFunctional from './HomeForFunctional';
 import SettingForClass from './SettingForClass';
+import hiraWork from './hiraWork';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ export default function App(props) {
         <Stack.Screen name="HomeForClass" component={HomeForClass} />
         <Stack.Screen name="HomeForFunctional" component={HomeForFunctional} />
         <Stack.Screen name="SettingForClass" component={SettingForClass} />
+        <Stack.Screen name="hiraWork" component={hiraWork} />
 
       </Stack.Navigator>
     </NavigationContainer>

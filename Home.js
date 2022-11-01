@@ -40,12 +40,12 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDhlmHLvYayhhMna9rLh3pM4f8f--jfeA4",
-  authDomain: "bseb-f0d27.firebaseapp.com",
-  projectId: "bseb-f0d27",
-  storageBucket: "bseb-f0d27.appspot.com",
-  messagingSenderId: "142210169144",
-  appId: "1:142210169144:web:d11233da3e21fbe6c729cd"
+  apiKey: "AIzaSyAfWr7DpEYWl1eLaoq27UPxb9A80WTyGO0",
+  authDomain: "gifted-chat-601fc.firebaseapp.com",
+  projectId: "gifted-chat-601fc",
+  storageBucket: "gifted-chat-601fc.appspot.com",
+  messagingSenderId: "112363243060",
+  appId: "1:112363243060:web:94130b191280d78164ec61"
 };
 
 let app;
@@ -56,8 +56,8 @@ if (firebase.apps.length === 0) {
   app = firebase.app();
 }
 
-const db = app.firestore();
-const auth = firebase.auth();
+export const db = app.firestore();
+export const auth = firebase.auth();
 const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
 
 // const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
@@ -156,7 +156,6 @@ export default function Home({navigation}) {
 
 
   db.collection('student')
-  .doc('umer')
   .add({
     campus: 'Pak Aims',
     rollno: 1,
@@ -287,7 +286,12 @@ export default function Home({navigation}) {
           title="Log Out User"
           onPress={logoutUser}
         />
-
+        <Button
+          title="Hira Work"
+          onPress={() =>
+            navigation.navigate('hiraWork')
+          }
+        />
     </View>
   );
 }
