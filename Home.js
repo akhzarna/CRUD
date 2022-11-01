@@ -8,60 +8,6 @@ import Bottom from './Bottom';
 import React, { Component, useEffect, useState } from 'react';
 
 
-//   // Import the functions you need from the SDKs you need
-//   import firebase, { initializeApp } from "firebase/app";
-//   // import * as firebase from "firebase";
-
-//   // import firebase from 'firebase/app';
-//   import 'firebase/auth';
-//   import 'firebase/firestore';
-
-//   // import * as firebase from "firebase";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyA3__9va2vzu-4x_9qWHDn4ntnXGoTkn50",
-//   authDomain: "fir-expo-fa5da.firebaseapp.com",
-//   projectId: "fir-expo-fa5da",
-//   storageBucket: "fir-expo-fa5da.appspot.com",
-//   messagingSenderId: "687421685940",
-//   appId: "1:687421685940:web:e3679f8a95c51c78f857e1"
-// };
-
-// // Initialize Firebase
-// initializeApp(firebaseConfig);
-
-
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import 'firebase/compat/database';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDhlmHLvYayhhMna9rLh3pM4f8f--jfeA4",
-  authDomain: "bseb-f0d27.firebaseapp.com",
-  projectId: "bseb-f0d27",
-  storageBucket: "bseb-f0d27.appspot.com",
-  messagingSenderId: "142210169144",
-  appId: "1:142210169144:web:d11233da3e21fbe6c729cd"
-};
-
-let app;
-
-if (firebase.apps.length === 0) {
-  app = firebase.initializeApp(firebaseConfig)
-} else {
-  app = firebase.app();
-}
-
-const db = app.firestore();
-const auth = firebase.auth();
-const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
-
-// const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
-// Please change your database URL to https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app (https://bseb-f0d27-default-rtdb.firebaseio.com/)
 
 export default function Home({navigation}) {
 
@@ -153,20 +99,6 @@ export default function Home({navigation}) {
   // .then(() => {
   //   console.log('User updated!');
   // });
-
-
-  db.collection('student')
-  .doc('umer')
-  .add({
-    campus: 'Pak Aims',
-    rollno: 1,
-    name:'Salman',
-    class:'BSE B',
-    key:10
-  })
-  .then(() => {
-    console.log('User added!');
-  });
 
 
   // firestore()
@@ -286,7 +218,14 @@ export default function Home({navigation}) {
     <Button
           title="Log Out User"
           onPress={logoutUser}
+      />
+          <Button
+          title="CRUD"
+        onPress={() => {
+            navigation.navigate("CRUD")
+          }}
         />
+
 
     </View>
   );
