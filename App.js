@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+
 import Home from './Home';
 import ProfileScreen from './ProfileScreen.js';
 import Dashboard from './Dashboard';
@@ -12,6 +13,7 @@ import SettingsScreen from './SettingsScreen';
 import HomeForClass from './HomeForClass';
 import HomeForFunctional from './HomeForFunctional';
 import SettingForClass from './SettingForClass';
+import firebaseSignIn from './firebaseSignIn';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +32,7 @@ export default function App(props) {
         <Stack.Screen name="HomeForClass" component={HomeForClass} />
         <Stack.Screen name="HomeForFunctional" component={HomeForFunctional} />
         <Stack.Screen name="SettingForClass" component={SettingForClass} />
+        <Stack.Screen name="firebaseSignIn" component={firebaseSignIn} />
 
       </Stack.Navigator>
     </NavigationContainer>
