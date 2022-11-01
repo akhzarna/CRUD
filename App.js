@@ -12,6 +12,7 @@ import SettingsScreen from './SettingsScreen';
 import HomeForClass from './HomeForClass';
 import HomeForFunctional from './HomeForFunctional';
 import SettingForClass from './SettingForClass';
+import CRUD from './CRUD';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,7 @@ export default function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        
+
         <Stack.Screen name="Home" component={Home} options={{ title: 'Welcome' }} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
@@ -30,6 +31,7 @@ export default function App(props) {
         <Stack.Screen name="HomeForClass" component={HomeForClass} />
         <Stack.Screen name="HomeForFunctional" component={HomeForFunctional} />
         <Stack.Screen name="SettingForClass" component={SettingForClass} />
+        <Stack.Screen name='CRUD' component={CRUD} />
 
       </Stack.Navigator>
     </NavigationContainer>
