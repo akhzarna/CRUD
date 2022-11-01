@@ -19,6 +19,8 @@ export default function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
+        
         
         <Stack.Screen name="Home" component={Home} options={{ title: 'Welcome' }} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
