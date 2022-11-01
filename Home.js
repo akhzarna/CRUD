@@ -40,12 +40,12 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDhlmHLvYayhhMna9rLh3pM4f8f--jfeA4",
-  authDomain: "bseb-f0d27.firebaseapp.com",
-  projectId: "bseb-f0d27",
-  storageBucket: "bseb-f0d27.appspot.com",
-  messagingSenderId: "142210169144",
-  appId: "1:142210169144:web:d11233da3e21fbe6c729cd"
+  apiKey: "AIzaSyBTHwMzlnx3pwIwtzD1cQNgk68nEsj6meY",
+  authDomain: "bseb-1ce51.firebaseapp.com",
+  projectId: "bseb-1ce51",
+  storageBucket: "bseb-1ce51.appspot.com",
+  messagingSenderId: "430232221189",
+  appId: "1:430232221189:web:3e9d2de6d6a27a6851ce6c"
 };
 
 let app;
@@ -56,8 +56,8 @@ if (firebase.apps.length === 0) {
   app = firebase.app();
 }
 
-const db = app.firestore();
-const auth = firebase.auth();
+export const db = app.firestore();
+export const auth = firebase.auth();
 const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
 
 // const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
@@ -156,7 +156,6 @@ export default function Home({navigation}) {
 
 
   db.collection('student')
-  .doc('umer')
   .add({
     campus: 'Pak Aims',
     rollno: 1,
@@ -231,7 +230,7 @@ export default function Home({navigation}) {
         // console.log('User data: ', data)
       }
 
-      <Text style={{fontSize:fonts}}> We are testing </Text>
+      <Text style={{fontSize:fonts}}> We are testing Crud </Text>
 
       {/* <Button
           title="Go to Next Screen"
@@ -279,8 +278,10 @@ export default function Home({navigation}) {
         />
      
      <Button
-          title="Guest User"
-          onPress={guestUser}
+          title="Test Crud"
+          onPress={() =>
+            navigation.navigate('crud')
+          }
         />
 
     <Button
