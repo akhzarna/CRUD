@@ -56,8 +56,8 @@ if (firebase.apps.length === 0) {
   app = firebase.app();
 }
 
-const db = app.firestore();
-const auth = firebase.auth();
+export const db = app.firestore();
+export const auth = firebase.auth();
 const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
 
 // const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
@@ -156,7 +156,6 @@ export default function Home({navigation}) {
 
 
   db.collection('student')
-  .doc('umer')
   .add({
     campus: 'Pak Aims',
     rollno: 1,
@@ -275,7 +274,9 @@ export default function Home({navigation}) {
      
      <Button
           title="Firebase Sign In"
-          onPress={loginUser}
+          onPress={() =>
+            navigation.navigate('firebaseSignIn')
+          }
         />
      
      <Button
