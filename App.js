@@ -12,13 +12,21 @@ import SettingsScreen from './SettingsScreen';
 import HomeForClass from './HomeForClass';
 import HomeForFunctional from './HomeForFunctional';
 import SettingForClass from './SettingForClass';
+import RegisterationForm from './RegisterationForm';
+import DeleteSearch from './DeleteSearch';
 
 const Stack = createNativeStackNavigator();
 
 export default function App(props) {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {backgroundColor:'darkslateblue'},
+          headerTitleStyle: {color: 'white', fontSize: 30},
+          headerTintColor: 'white', headerTitleAlign: 'center'
+        }}
+      >
         
         <Stack.Screen name="Home" component={Home} options={{ title: 'Welcome' }} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
@@ -30,6 +38,8 @@ export default function App(props) {
         <Stack.Screen name="HomeForClass" component={HomeForClass} />
         <Stack.Screen name="HomeForFunctional" component={HomeForFunctional} />
         <Stack.Screen name="SettingForClass" component={SettingForClass} />
+        <Stack.Screen name="RegisterationForm" component={RegisterationForm} />
+        <Stack.Screen name="DeleteSearch" component={DeleteSearch} />
 
       </Stack.Navigator>
     </NavigationContainer>

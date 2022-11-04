@@ -56,8 +56,8 @@ if (firebase.apps.length === 0) {
   app = firebase.app();
 }
 
-const db = app.firestore();
-const auth = firebase.auth();
+export const db = app.firestore();
+export const auth = firebase.auth();
 const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
 
 // const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.firebasedatabase.app');
@@ -65,7 +65,7 @@ const dbreal = app.database('https://bseb-f0d27-default-rtdb.asia-southeast1.fir
 
 export default function Home({navigation}) {
 
-  const [data, setData] = useState();
+  //const [data, setData] = useState();
   const createUser = () => {
     auth.createUserWithEmailAndPassword('akhzarn@yahoo.com','123456')
     .then( data =>{
@@ -155,18 +155,18 @@ export default function Home({navigation}) {
   // });
 
 
-  db.collection('student')
-  .doc('umer')
-  .add({
-    campus: 'Pak Aims',
-    rollno: 1,
-    name:'Salman',
-    class:'BSE B',
-    key:10
-  })
-  .then(() => {
-    console.log('User added!');
-  });
+  // db.collection('student')
+  // .doc('umer')
+  // .add({
+  //   campus: 'Pak Aims',
+  //   rollno: 1,
+  //   name:'Salman',
+  //   class:'BSE B',
+  //   key:10
+  // })
+  // .then(() => {
+  //   console.log('User added!');
+  // });
 
 
   // firestore()
@@ -286,6 +286,11 @@ export default function Home({navigation}) {
     <Button
           title="Log Out User"
           onPress={logoutUser}
+        />
+    
+    <Button
+          title="Registration Screen"
+          onPress={()=>navigation.navigate('RegisterationForm')}
         />
 
     </View>
